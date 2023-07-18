@@ -309,6 +309,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
   late Animation<Offset> _offsetAnimation;
 
   late Animation<double> _cursorAnimation;
+
   DialogConfig get _dialogConfig => widget.dialogConfig == null
       ? DialogConfig()
       : DialogConfig(
@@ -318,6 +319,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           negativeText: widget.dialogConfig!.negativeText,
           platform: widget.dialogConfig!.platform,
         );
+
   PinTheme get _pinTheme => widget.pinTheme;
 
   Timer? _blinkDebounce;
@@ -738,20 +740,17 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               title: Text(_dialogConfig.dialogTitle!),
               content: RichText(
                 text: TextSpan(
-                  text: _dialogConfig.dialogContent,
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.labelLarge!.color),
+                  text: '',
                   children: [
                     TextSpan(
                       text: formattedPastedText,
                       style: widget.pastedTextStyle ?? defaultPastedTextStyle,
                     ),
                     TextSpan(
-                      text: " ?",
+                      text: _dialogConfig.dialogContent,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.labelLarge!.color,
-                      ),
-                    )
+                          color: Theme.of(context).textTheme.labelLarge!.color),
+                    ),
                   ],
                 ),
               ),
